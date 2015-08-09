@@ -182,7 +182,7 @@ angular.module('starter.controllers')
 	  $scope.dayword_container[cplayer_index].time = rtn;
 
 
-	  if($scope.dayword_container[cplayer_index].word.start+5 < cplayer.getCurrentTime()) {
+	  if($scope.dayword_container[cplayer_index].word.start+6 < cplayer.getCurrentTime()) {
 	    if($scope.dayword_container[cplayer_index].word.index < $scope.dayword_container[cplayer_index].word_container.length-1) {
 	      $scope.anext_word(cplayer_index, $scope.dayword_container[cplayer_index].word.index);
 	    }

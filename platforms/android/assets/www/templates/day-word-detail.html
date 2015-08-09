@@ -1,0 +1,157 @@
+<ion-view view-title="{{date | date:'MM월 dd일'}} 단어" style="background-color:#E8E8E8;" cache-view="false">
+
+  <ion-content has-header="true" padding="false" overflow-scroll="true">
+
+      <div ng-repeat="dw in dayword_container">
+	<div class="card" style="margin:10px;">
+	<div class="item item-text-wrap" style="padding: 0px;">
+
+	  <div class="card" style="margin-top: 5px; margin-bottom: 5px">
+	    <!-- <div class="item item-divider" style="background: #F2E6D0;"> -->
+	    <div class="item item-divider">
+	      <p  style="font-size: 75%; color: black; font-weight: bolder;">
+		{{dw.title}}
+	      </p>
+	    </div>
+
+	    <div class="item item-text-wrap;" style="border-width:0px; padding:0px; background-color:black ">	     
+	      <div ng-if="is_v == true">
+		<youtube-video video-id="dw.vid" player-vars="dw.opts" player-width="'100%'" player-height="'100%'"></youtube-video>
+	      </div>
+	    </div>
+
+
+
+	    <!-- <div style="margin-bottom: 15px;"> </div> -->
+
+	    
+	    <!--
+	    <div class="item item-divider">
+	      <p  style="font-size: 75%; color: black; font-weight: bolder;">
+		Vocabulary
+	      </p>
+	    </div>
+	    -->
+	    
+
+	    <div class="item item-text-wrap" style="border-width: 0px;">
+
+	      <div style="height:14em">
+		<p align="right" style="font-size: 75%; color: green; line-height: 0.22857;">재생시간: 
+		  <span ng-if="dw.time.h != 0">{{dw.time.h}}시간</span> {{dw.time.m}}분 {{dw.time.s}}초</p>
+		<p align="center">
+		  <span style="font-size: 120%; color: black; font-weight: bolder; line-height: 2.22857;"> {{dw.word.w}} </span>
+		  - 
+		  <span style="font-size: 85%; font-weight: normal; line-height: 2.22857;"> {{dw.word.type}} </span>
+		</p>
+
+		<p style="font-size: 80%; font-weight: normal;">
+		  뜻: <span style="color: black;">{{dw.word.def}}</span>
+		</p>
+
+		<div style="margin-bottom:0.5em"></div>
+
+		<p style="font-size: 75%; font-weight: normal;">
+		  스크립트: <mark><span style="color: black;">{{dw.word.example | limitTo: 130 }} {{dw.word.example.length < 130 ? '' : '...'}}</span></mark>
+		</p>
+
+		<div style="margin-bottom:0.5em"></div>
+
+		<p style="font-size: 75%; font-weight: normal;">
+		  번역: <span style="color: black;"> {{dw.word.example_ko | limitTo: 90}} {{dw.word.example_ko.length < 90 ? '' : '...'}}</span>
+		</p>
+
+		<div style="margin-bottom:0.5em"></div>
+
+
+		<div style="font-size: 75%; font-weight: normal;">
+		  등장 시간: <span style="color: black;">{{dw.word.time}} </span>
+		</div>
+
+
+	      </div>
+	      <hr style="margin-bottom:0px; margin-top:0px;">
+
+	      <div class="button-bar">
+		<div ng-if="dw.word.prev!=true">
+		  <button disabled="true" class="button icon ion-arrow-left-c" style="float:left; border: 0px; max-height: 38px; min-height: 27px; background-color:white;" ng-click="prev_word($index, dw.word.index)"></button>
+		</div>
+		<div ng-if="dw.word.prev==true">
+		  <button class="button icon ion-arrow-left-c" style="border: 0px; max-height: 38px; min-height: 27px; background-color:white;" ng-click="prev_word($index, dw.word.index)"></button>
+		</div>
+
+		<button class="button button-clear button-positive" style="border: 0px; max-height: 38px; min-height: 27px; background-color:white;" ng-click="play_seek($index, dw.word.start)"> <span style="font-size: 75%; font-weight: normal;">단어부분 재생</span></button>
+
+		<div ng-if="dw.word.next!=true">
+		  <button disabled="true" class="button icon ion-arrow-right-c" style="float:right; border: 0px; max-height: 38px; min-height: 27px; background-color:white;" ng-click="next_word($index, dw.word.index)"></button>
+		</div>
+		<div ng-if="dw.word.next==true">
+		  <button class="button icon ion-arrow-right-c" style="border: 0px; max-height: 38px; min-height: 27px; background-color:white;" ng-click="next_word($index, dw.word.index)"></button>
+		</div>
+	      </div>
+
+	      <!--
+	      <div>
+		<div ng-if="dw.word.prev==true">
+		  <button class="button icon ion-arrow-left-c" style="float:left; border: 0px; max-height: 38px; min-height: 27px; background-color:white;" ng-click="prev_word($index, dw.word.index)"></button>
+		</div>
+		
+		<div ng-if="dw.word.next==true">
+		 <button class="button icon ion-arrow-right-c" style="float:right; border: 0px; max-height: 38px; min-height: 27px; background-color:white;" ng-click="next_word($index, dw.word.index)"></button>
+		</div>
+	      </div>
+	      -->
+	  
+	  
+	      <!--
+	      <div ng-repeat="word in dw.word_container">
+
+
+		<div>
+		  <p>
+		  <span style="font-size: 95%; color: black; font-weight: bolder;"> {{word.w}} </span>
+		  - 
+		  <span style="font-size: 75%; font-weight: normal;"> {{word.type}} </span>
+		  </p>
+
+		  <p style="font-size: 75%; font-weight: normal;">
+		    뜻: <span style="color: black;">{{word.def}}</span>
+		  </p>
+
+		  <p style="font-size: 75%; font-weight: normal;">
+		    script : <span style="color: black;">{{word.example}}</span>
+		  </p>
+		  <p style="font-size: 75%; font-weight: normal;">
+		    번역:  {{word.example_ko}}
+		  </p>
+
+		  <p style="font-size: 70%; font-weight: normal;">
+		    대사 시간: {{word.time}}
+		  </p>
+
+
+		</div>
+		<hr>
+	      </div>
+	      -->
+
+	    </div>
+
+
+	  </div>
+
+	</div>
+      </div>
+      </div>
+
+
+    
+    <br>
+    <br>
+    <br>
+    
+   
+
+  </ion-content>
+  
+</ion-view>

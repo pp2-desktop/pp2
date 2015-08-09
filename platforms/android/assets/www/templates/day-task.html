@@ -1,0 +1,89 @@
+<ion-view view-title="오늘의 퀴즈" style="background-color:#E8E8E8;">
+
+  <ion-content has-header="true" padding="true" overflow-scroll="true">
+
+
+    <div ng-if="user_info.device.is_free_trial_done == true">
+      
+      <div class="card" style="margin-top:0px">
+	<!--<div class="item item-divider" style="background: #65AF94;">-->
+	<div class="item item-divider">
+	  <p  style="font-size: 90%; color: black; font-weight: bolder;">
+	    오늘의 퀴즈
+	  </p>
+	</div>
+	<div class="item item-text-wrap">
+
+	  <p style="font-size: 80%; color: black; font-weight: normal;">
+	    총 3개의 문법, 리스닝, 리딩 섹션으로 구성되어 있습니다.
+	  </p>
+	  
+	  <div ng-if="is_weekend != true">
+	    <button class="button button-block button-calm" ng-click="beginTask(1)">
+	      <b>{{month}}월  {{date}}일 퀴즈  I 도전</b>
+	    </button>
+	    <button class="button button-block button-positive" ng-click="beginTask(2)">
+	      <b>{{month}}월  {{date}}일 퀴즈  II 도전</b>
+	    </button>
+	  </div>
+
+	  <div ng-if="is_weekend == true">
+	    <button class="button button-block button-positive" ng-disabled='true'>
+	      <b>주말에는 오늘의 퀴즈가 열리지 않습니다!</b>
+	    </button>
+	  </div>
+
+	</div>
+
+      </div>
+
+
+      <div class="card">
+	<div class="item item-divider">
+	  <p  style="font-size: 90%; color: black; font-weight: bolder;">
+	    지난 퀴즈 도전하기
+	    <select style="float:right" ng-model="prop.value" ng-options="v for v in prop.values">
+	    </select>
+	  </p>
+
+
+	</div>
+	<div class="item item-text-wrap">
+	  <div ng-if="q.lv==1">
+	    <div pickadate="" ng-model="calendar.pickdate" min-date="minDate" max-date="maxDate" done-dates="disabledDates"></div>
+	  </div>
+	  <div ng-if="q.lv==2">
+	    <div pickadate="" ng-model="calendar.pickdate" min-date="minDate" max-date="maxDate" done-dates="disabledDates"></div>
+	  </div>
+	  <p style="font-size: 75%; margin-top:10px;">원하시는 날짜를 터치해주세요. 최대 30일까지 가능합니다.</p>
+	</div>
+      </div>
+
+    </div>
+
+
+
+
+
+
+    <div ng-if="user_info.device.is_free_trial_done != true">
+
+      <p align="center">
+	3일간 영어데이를 무료로 체험 하실수 있습니다.
+      </p>
+      <p align="center">
+	시작하실려면 시작하기 버튼을 눌러주세요.
+      </p>
+
+      <button class="button button-block button-stable" ng-click="startTrial()">
+	시작하기
+      </button>
+    </div>
+
+
+    
+    <br>
+    <br>
+  </ion-content>
+  
+</ion-view>

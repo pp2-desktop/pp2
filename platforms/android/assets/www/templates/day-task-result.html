@@ -1,0 +1,344 @@
+<ion-view view-title=" {{title  | date:'MM월 dd일'}} 퀴즈 결과" style="background-color:#E8E8E8;" cache-view="false">
+
+
+  <ion-content has-header="true" padding="true" overflow-scroll="true">
+    
+
+    <div class="card" style="margin-top: 2px">
+      <div class="item item-divider" style="background: #8dcd91;">
+	{{title  | date:'yyyy년 MM월 dd일'}}퀴즈 결과
+      </div>
+
+      <div class="item item-text-wrap">
+	<p> 난이도: {{lv}} </p>
+	<hr>
+	<p>Incomplete Sentences: &nbsp&nbsp&nbsp {{incompleteQuizs_grade}}%</p>
+	<p>Reading Comprehension: &nbsp&nbsp&nbsp {{readingQuizs_grade}}%</p>
+	<p>Listening Sentences: &nbsp&nbsp&nbsp {{listeningQuizs_grade}}%</p>
+	<!--
+	<p>Grammar(문법): &nbsp&nbsp&nbsp 50%</p>
+	<p>Reading(리딩): &nbsp&nbsp&nbsp&nbsp&nbsp 65%</p>
+	<p>Listening(리스닝): 100%</p>
+	-->
+	<hr>
+	<p style="text-align: center; font-size: 120%;"><b>Total average: {{total_grade}}%</b></p>
+      </div>
+    </div>
+
+
+    <div class="card" style="margin-top:0px">
+      <div class="item item-divider" style="background: #F5DEB3;">
+	Incomplete Sentences
+      </div>
+      <div class="item item-text-wrap">
+
+	<div ng-repeat="q in incompleteQuizs">
+
+	  <label>
+	    <div style="font-size: 85%; color: black; line-height: 1.82857; font-weight: normal; margin-bottom: 5px;">{{$index+1}}. <span dynamic="q.question"></span></div>
+	  </label>
+
+	  <div ng-repeat="c in q.choices">
+	    <div class="list">
+	      <li class="item item-checkbox" style="padding-left:50px; padding-bottom:10px; padding-top: 10px; padding-right:10px;">
+		<label class="checkbox">
+		  <input type="radio" ng-model='q.ans' ng-value="{{$index+1}}" ng-disabled="true">
+		</label>
+
+		 <div ng-if="$index != (q.correct_ans-1)">
+		    <span style="font-size: 75%; font-weight: normal; padding-bottom: 5px;"> {{c}} </span> 
+		 </div>
+
+		 <div ng-if="$index == (q.correct_ans-1)">
+		    <span style="font-size: 75%; font-weight: normal; padding-bottom: 5px; background-color: #00ff00;"> {{c}} </span>
+		 </div>
+		 
+	      </li>
+	    </div>
+	  </div>
+
+	  <div ng-if="q.is_correct == true">
+	    <div class="card" style="margin:5px">
+	      <div class="item item-text-wrap" style="background: #70A33E;">
+
+		<p style="color:white;text-align:center;"><b>Correct</b></p>
+		<hr>
+		<!--
+		<p style="color:white"> <span style="font-size: 90%; font-weight: normal;" dynamic="q.explain"></span> </p> -->
+		<div id="p5" dynamic="q.explain"></div>
+	      </div>
+	    </div>
+	  </div>
+
+	  <div ng-if="q.is_correct != true">
+	    <div class="card" style="margin:5px">
+	      <div class="item item-text-wrap" style="background: #DA5151;">
+		<p style="color: white;text-align:center;"><b>Incorrect</b></p>
+		<hr>
+		<!--
+		<p style="color:white"> <span style="font-size: 90%; font-weight: normal;" dynamic="q.explain"></span> </p> -->
+		<div id="p5" dynamic="q.explain"></div>
+	      </div>
+	    </div>
+	  </div>
+
+
+	  <br>
+	</div>
+
+
+      </div>
+    </div>
+
+
+
+    <div class="card">
+      <div class="item item-divider" style="background: #F5DEB3;">
+	Reading Comprehension
+      </div>
+      <div class="item item-text-wrap" style="padding: 5px;">
+	<!-- 본문 -->
+	<div class="card" style="margin-top: 5px; margin-bottom: 5px">
+	  <div class="item item-divider">
+	    <p  style="font-size: 75%; color: black; font-weight: bolder;">
+	      Read the following text, then do the exercise below.
+	    </p>
+	  </div>
+
+	  <div class="item item-text-wrap;">
+
+	    <div id="p4" dynamic="paragraph"></div>
+
+
+	  </div>
+
+	</div>
+
+
+	<div style="margin-bottom: 15px;"> </div>
+	<!-- 퀴즈 -->
+	<div class="card" style="margin-top: 5px; margin-bottom: 5px">
+	  <div class="item item-divider">
+	    <p  style="font-size: 75%; color: black; font-weight: bolder;">
+	      Exercise
+	    </p>
+	  </div>
+	  <div class="item item-text-wrap">
+
+	    
+	    <div ng-repeat="q in readingQuizs">
+
+	      <label>
+		  <div style="font-size: 85%; color: black; line-height: 1.82857; font-weight: normal; margin-bottom: 5px;">{{$index+1}}. <span dynamic="q.question"></span></div>
+	      </label>
+
+	      <div ng-repeat="c in q.choices">
+		<div class="list">
+		  <li class="item item-checkbox" style="padding-left:50px; padding-bottom:10px; padding-top: 10px; padding-right:10px;">
+		    <label class="checkbox">
+		      <input type="radio" ng-model='q.ans' ng-value="{{$index+1}}" ng-disabled="true">
+		    </label>
+
+		    <div ng-if="$index != (q.correct_ans-1)">
+		      <span style="font-size: 75%; font-weight: normal; padding-bottom: 5px;"> {{c}} </span> 
+		    </div>
+
+		    <div ng-if="$index == (q.correct_ans-1)">
+		      <span style="font-size: 75%; font-weight: normal; padding-bottom: 5px; background-color: #00ff00;"> {{c}} </span>
+		    </div>
+
+		  </li>
+		</div>
+	      </div>
+
+
+	      <div ng-if="q.is_correct == true">
+		<div class="card" style="margin:5px">
+		  <div class="item item-text-wrap" style="background: #70A33E;">
+
+		    <p style="color:white;text-align:center;"><b>Correct</b></p>
+		    
+		    <hr>
+		    <div id="p5" dynamic="q.explain"></div>
+
+		  </div>
+		</div>
+	      </div>
+
+	      <div ng-if="q.is_correct != true">
+		<div class="card" style="margin:5px">
+		  <div class="item item-text-wrap" style="background: #DA5151;">
+		    <p style="color: white;text-align:center;"><b>Incorrect</b></p>
+		   
+		    <hr>
+		    <div id="p5" dynamic="q.explain"></div>
+
+		  </div>
+		</div>
+	      </div>
+
+
+	      <br>
+
+	    </div>
+
+	    
+	  </div>
+
+	</div>
+
+	<div style="margin-bottom: 15px;"> </div>
+
+	<div class="card" style="margin-top: 5px; margin-bottom: 5px">
+	  <div class="item item-divider">
+	    <p  style="font-size: 75%; color: black; font-weight: bolder;">
+	      지문 해석
+	    </p>
+	  </div>
+
+	  <div class="item item-text-wrap;">
+
+	    <div id="p4" dynamic="paragraph_ko"></div>
+
+
+	  </div>
+
+	</div>
+
+
+	
+      </div>
+    </div>
+
+
+
+   <div class="card">
+	<div class="item item-divider" style="background: #F5DEB3;">
+	  Listening Section
+	</div>
+
+	<div ng-repeat="q in listeningQuizs">
+	  <div class="item item-text-wrap" style="padding: 5px;">
+
+	    <div class="card" style="margin-top: 5px; margin-bottom: 5px">
+	      <!-- <div class="item item-divider" style="background: #F2E6D0;"> -->
+	      <div class="item item-divider">
+		<p  style="font-size: 75%; color: black; font-weight: bolder;">
+		  Watch the following video, then do the exercise below.
+		</p>
+	      </div>
+	      <div class="item item-text-wrap;" style="border-width: 0px;">	     
+		<div ng-if="is_v == true">
+		  <youtube-video video-id="q.vid" player-vars="q.opts" player-width="'100%'" player-height="'100%'"></youtube-video>
+		</div>
+
+		<hr>
+
+		<div ng-if="lv==1">
+		  <div id="p9">
+		    <div id="p8" dynamic="q.script"></div>
+		  </div>
+		</div>
+
+		<div ng-if="lv!=1">
+		  <div style="background-color: #fffacd;">
+		    <p>현재 레벨2는 스크립트를 지원하지 않습니다.</p>
+		  </div>
+		</div>
+
+
+
+	      </div>
+
+
+
+	      <!-- <div style="margin-bottom: 15px;"> </div> -->
+
+	     
+	      <div class="item item-divider">
+		<p  style="font-size: 75%; color: black; font-weight: bolder;">
+		  Exercise
+		</p>
+	      </div>
+	      
+
+	      <div class="item item-text-wrap" style="border-width: 0px;">
+
+		<div ng-repeat="eq in q.question_container">
+		  <label>
+		    <div style="font-size: 85%; color: black; line-height: 1.82857; font-weight: normal; margin-bottom: 5px;">{{$index+1}}. <span dynamic="eq.question"></span></div>
+		  </label>
+
+		  <div ng-repeat="c in eq.choices">
+		    <div class="list">
+		      <li class="item item-checkbox" style="padding-left:50px; padding-bottom:10px; padding-top: 10px; padding-right:10px;">
+			<label class="checkbox">
+			  <input type="radio" ng-model='eq.ans' ng-value="{{$index+1}}" ng-disabled="true">
+			</label>
+
+			<div ng-if="$index != (eq.correct_ans-1)">
+			  <span style="font-size: 75%; font-weight: normal; padding-bottom: 5px;"> {{c}} </span> 
+			</div>
+
+			<div ng-if="$index == (eq.correct_ans-1)">
+			  <span style="font-size: 75%; font-weight: normal; padding-bottom: 5px; background-color: #00ff00;"> {{c}} </span>
+			</div>
+
+		      </li>
+		    </div>
+		  </div>
+
+
+		  <div ng-if="eq.is_correct == true">
+		    <div class="card" style="margin:5px">
+		      <div class="item item-text-wrap" style="background: #70A33E;">
+
+			<p style="color:white;text-align:center;"><b>Correct</b></p>
+			<hr>
+			<div id="p5" dynamic="eq.explain"></div>
+		      </div>
+		    </div>
+		  </div>
+
+		  <div ng-if="eq.is_correct != true">
+		    <div class="card" style="margin:5px">
+		      <div class="item item-text-wrap" style="background: #DA5151;">
+			<p style="color: white;text-align:center;"><b>Incorrect</b></p>
+			<hr>
+			<!--
+			<p style="color:white"> <span style="font-size: 90%; font-weight: normal;" dynamic="eq.explain"></span> </p>
+			-->
+			<div id="p5" dynamic="eq.explain"></div>
+		      </div>
+		    </div>
+		  </div>
+
+
+		  <br>
+		</div>
+
+	      </div>
+
+
+	    </div>
+
+	  </div>
+	</div>
+
+
+      </div>
+
+    <!-- 2015년 5월 15일 시험 레벨 기준 몇명이 퀴즈를 쳤고 평균 몇점 최저점 최고점 몇등 -->
+    <button class="button button-block button-positive" ng-click="goTodayquiz()">
+      <!-- 오늘의 퀴즈 바로가기  -->
+      돌아가기
+    </button>
+
+    <br>
+ 
+    <br>
+    <br>
+
+  </ion-content>
+  
+</ion-view>

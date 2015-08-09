@@ -1,0 +1,71 @@
+<ion-view view-title="오늘의 단어" style="background-color:#E8E8E8;">
+
+  <ion-content has-header="true" padding="true" overflow-scroll="true">
+    
+    <div ng-if="user_info.device.is_free_trial_done == true">
+      <div ng-repeat="dayword_info in dayword_info_container">
+	
+	<button class="card button button-block button-light" ng-click="dayword_detail($index)" style="line-height: 1.82857;">
+	  
+	  <span style="font-size: 75%; color: black; font-weight: bolder;">
+	    {{dayword_info.date | date:'longDate'}}
+	  </span>
+	  <hr style="margin-bottom:0px; margin-top:0px">
+	  <div style="min-height:3.5em;">
+	    <div class="item item-body" style="padding: 5px; font-size: 75%;border: 0px;" ng-repeat="dayword in dayword_info.dayword_container">
+	      <div style="line-height: 1.42857;">
+		{{dayword.title}}
+	      </div>
+	      <!--
+	      This is a "Facebook" styled Card. The header is created from a Thumbnail List item,
+	      -->
+	    </div>
+
+	  </div>
+	  
+	  
+	</button>
+
+	<!--
+	<button class="button button-block button-light" ng-click="dayword_detail($index)">
+	{{dayword_info.date}}
+	</button>
+	-->
+
+	
+	<div style="margin-top:12px"></div>
+
+      </div>
+
+      
+      <br>
+
+      <div ng-if="is_next==true">
+	<button class="button button-block button-stable" ng-click="more()">
+	  더보기
+	</button>
+      </div>
+    </div>
+
+
+    <div ng-if="user_info.device.is_free_trial_done != true">
+      <p align="center">
+	3일간 영어데이를 무료로 체험 하실수 있습니다.
+      </p>
+      <p align="center">
+	시작하실려면 시작하기 버튼을 눌러주세요.
+      </p>
+
+      <button class="button button-block button-stable" ng-click="startTrial()">
+	시작하기
+      </button>
+    </div>
+    
+
+    <br>
+    <br>
+    <br>
+
+  </ion-content>
+  
+</ion-view>

@@ -1,0 +1,71 @@
+<ion-view view-title="{{title}}">
+
+  <ion-content has-header="true" padding="true" overflow-scroll="true">
+
+    <label style="min-height:48px; padding:0px; border-width:0px">
+      <select class="item item-input item-select" style="float:right" ng-model="typeSort.value" ng-options="v for v in typeSort.values">
+	<!--
+	<option selected>최신순</option>
+	<option>오래된순</option>
+	-->
+      </select>
+    </label>
+    <br>
+    <br>
+
+    <ion-list>
+      <ion-item ng-repeat='v in v_container' class="v-list" ng-click="watchVideo(v.parent, v.child, v._id)" style="border-width: 0px; border-top-width: 0px; padding:2px;">
+
+	<div class="v">
+	  <div class="row" style="margin: 0px; padding: 0px">
+
+	    <span>
+	      <div class="module">
+		<img max-width:100%; min-height:100px; ng-src="http://img.youtube.com/vi/{{v.vid}}/1.jpg">
+		<span class="p2">{{v.length}}</span>
+		<div ng-if="v.is_view == true">
+		  <span class="p3">시청함</span>
+		</div>
+	      </div>
+	    </span>
+
+
+	    <div class="col" style="margin: 0px; padding: 0px; line-height: 15px;">
+	      <div class="row" style="margin-bottom: 5px;">
+		<p  style="font-size: 70%; color: black; font-weight: bold;">
+		  <span style="white-space: normal;">
+		    {{ v.title | limitTo: 70 }} {{v.title.length > 70 ? '...' : ''}}
+		</p>
+	      </div>
+
+	      <div class="row" style="font-size: 75%; margin-bottom: 5px;">
+		작성자: {{v.author}}
+	      </div>
+	      <div class="row" style="font-size: 70%;">
+		조회수: {{v.view | number : 0}}
+	      </div>
+	      <div class="row" style="font-size: 75%;">
+		<span am-time-ago="v.date"></span>
+	      </div>
+	    </div>
+
+	  </div>
+	</div>
+      </ion-item> 
+    </ion-list>
+
+
+    <div ng-if="is_next==true">
+      <button class="button button-block button-stable" ng-click="more()">
+	더보기
+      </button>
+    </div>
+
+
+    <br>
+    <br>
+    <br>   
+  </ion-content>
+
+  
+</ion-view>

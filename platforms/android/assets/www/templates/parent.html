@@ -1,0 +1,42 @@
+<ion-view view-title="{{title}}">
+
+  <ion-content has-header="true" padding="true" overflow-scroll="true">
+
+    <ion-item ng-repeat="c in child_container"  ng-click="goChild(c.parent, c.child)" style="border-width: 1px; border-top-width: 1px; padding:1px; height:90px; margin-bottom:15px;">
+
+
+      <div class="row" style="margin: 0px; padding: 0px">
+
+	
+	<span>
+	  <div class="module">
+	    <img max-width:100%; min-height:100px; ng-src="http://img.youtube.com/vi/{{c.vid}}/1.jpg">
+	  </div>
+	</span>
+	
+
+
+	<div class="col" style="margin-left: 10px; padding: 0px;">
+
+
+	  <h3 style="padding-top:5px"> <b>{{c.title}}</b></h3>
+	  <hr>
+	  <p style="font-size:75%;"> <b>동영상: {{c.cnt}}개</b> </p>
+	  <p style="font-size:75%;"> Update: &nbsp <span am-time-ago="c.date"></span></p>
+
+	</div>
+
+      </div>
+
+
+      
+    </ion-item>
+    
+    <br>
+    <br>
+
+
+  </ion-content>
+
+  
+</ion-view>

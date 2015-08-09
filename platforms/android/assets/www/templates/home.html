@@ -1,0 +1,110 @@
+<ion-view view-title="홈" style="background-color:#E8E8E8;">
+
+  <ion-content has-header="true" padding="true" overflow-scroll="true">
+    <!-- 
+    <iframe width="420" height="315"
+    src="http://www.youtube.com/embed/mMSHEdIURkA?list=PLjeJUgQzMUVKwHc4gNy-DRPVZreacAwHW">
+    </iframe>
+    -->
+
+    <div ng-if="is_online == true">
+    <ion-list>
+      <!--<ion-item ng-repeat="element in home_container" style="border-width: 0px; border-top-width: 0px; padding:2px;">-->
+      <ion-item ng-repeat="element in home_container" style="border-width: 1px; padding:10px; margin-bottom: 10px">
+	<a class="item" href="#/app/home/{{element.parent}}" style="text-decoration: none; padding: 0px;border-width:0px">
+	  <img width=45; height=45; src="{{element.img}}" alt="Image" style="float:left; margin-right: 10px"/>
+	  <i class="icon ion-ios-more" style="float:right; font-size:150%;"></i>
+	  <p>{{element.title}}</p>
+	  <p>{{element.detail}}</p>
+	</a>
+	<hr>
+	<!--
+	<div style="margin-bottom:15px"> </div>
+	-->
+	<div style="clear: both;">
+	  <span ng-repeat='v in element.video_container' class="v-list" ng-click="watchVideo(v.parent, v.child, v._id)">
+
+	    <div class="v">
+	      <div class="row" style="margin: 0px; padding: 0px">
+
+		<span>
+		  <div class="module">
+		    <img max-width:100%; min-height:100px; ng-src="http://img.youtube.com/vi/{{v.vid}}/1.jpg">
+		    <!--
+		    <img max-width:100%; min-height:100px; src="http://img.youtube.com/vi/kUGQ7Tz4os0/1.jpg">
+		    -->
+		    <span class="p2">{{v.length}}</span>
+		    <div ng-if="v.is_view == true">
+		      <span class="p3">시청함</span>
+		    </div>
+		  </div>
+		</span>
+
+
+		<div class="col" style="margin: 0px; padding: 0px; line-height: 15px;">
+		  <div class="row" style="margin-bottom: 5px;">
+		    <p  style="font-size: 70%; color: black; font-weight: bold;">
+		      <span style="white-space: normal;">
+			{{ v.title | limitTo: 70 }} {{v.title.length > 70 ? '...' : ''}}
+		    </p>
+		  </div>
+
+		  <div class="row" style="font-size: 75%; margin-bottom: 5px;">
+		    게시자: {{v.author}}
+		  </div>
+		  <div class="row" style="font-size: 70%;">
+		    조회수: {{v.view | number : 0}}
+		  </div>
+		  <div class="row" style="font-size: 75%;">
+		    <span am-time-ago="v.date"></span>
+		  </div>
+		</div>
+
+	      </div>
+	    </div>
+		      </span> <!-- end of ng repeat -->
+
+
+		      <button class="button button-block button-stable" style="min-height:30px; max-height:32px; margin-bottom:0px;line-height:0px" ng-click="goParentChild(element.parent)">
+			더보기
+		      </button>
+
+		      
+		      
+	</div>
+	
+
+      </ion-item>
+
+    </ion-list>
+	  </div>
+
+	  <div ng-if="is_online != true">
+
+	    <div class="card">
+	      <div class="item item-text-wrap">
+		<p align="center">
+		  <i class="icon ion-alert-circled" style="font-size: 200%; margin-right: 10px;"></i>
+		</p>
+
+		<p align="center">
+		  현재 네트워크에 연결되어 있지 않습니다.
+		</p>
+		<p align="center">
+		  나중에 다시 시도해주세요.
+		</p>
+	      </div>
+	      <button class="button button-block button-positive" ng-click="reconnect()">
+		다시 시도
+	      </button>
+	    </div>
+	  </div>
+    
+    <br>
+    <br>
+    <br>
+
+  </ion-content>
+
+  
+</ion-view>

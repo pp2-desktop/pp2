@@ -1,0 +1,273 @@
+<ion-view view-title=" {{title  | date:'MM월 dd일'}} 퀴즈" style="background-color:#E8E8E8;">
+
+
+  <ion-content has-header="true" padding="true" overflow-scroll="true">
+    
+    <div ng-if="is_done != true">
+      <div class="list">
+	<label class="item item-input item-select">
+	  <div class="input-label">
+	    난이도
+	  </div>
+	  <select ng-model="prop.value" ng-options="v for v in prop.values">
+	  </select>
+	</label>
+
+      </div>
+      
+      <div ng-if="is_existing == true">
+
+	
+	<!-- incomplete start  -->
+	<div class="card" style="margin-top:0px">
+	  <div class="item item-divider" style="background: #F5DEB3;">
+	    Incomplete Sentences
+	  </div>
+	  <div class="item item-text-wrap">
+
+	    <div ng-repeat="q in incompleteQuizs">
+
+	      <label>
+		<div style="font-size: 85%; color: black; line-height: 1.82857; font-weight: normal; margin-bottom: 5px;">{{$index+1}}. <span dynamic="q.question"></span></div>
+	      </label>
+
+	      <div ng-repeat="c in q.choices">
+		<div class="list">
+		  <li class="item item-checkbox" style="padding-left:50px; padding-bottom:10px; padding-top: 10px; padding-right:10px;">
+		    <label class="checkbox">
+		      <input type="radio" ng-model='q.ans' ng-value="{{$index+1}}">
+		    </label>
+		    <span style="font-size: 75%; font-weight: normal; padding-bottom: 5px;"> {{c}} </span> 
+		  </li>
+		</div>
+	      </div>
+	      <br>
+
+
+	    </div>
+
+
+	  </div>
+
+	</div>
+	<!--  incomplete end  -->
+
+	<!-- </div>-->
+	<div class="card">
+	  <div class="item item-divider" style="background: #F5DEB3;">
+	    Reading Comprehension
+	  </div>
+	  <div class="item item-text-wrap" style="padding: 5px;">
+	    <!-- 본문 -->
+	    <div class="card" style="margin-top: 5px; margin-bottom: 5px">
+	      <div class="item item-divider">
+		<p  style="font-size: 75%; color: black; font-weight: bolder;">
+		  Read the following text, then do the exercise below.
+		</p>
+	      </div>
+
+	      <div class="item item-text-wrap;">
+
+
+		<div id="p4" dynamic="paragraph"></div>
+
+
+
+	      </div>
+	    </div>
+
+
+	    <div style="margin-bottom: 15px;"> </div>
+	    <!-- 퀴즈 -->
+	    <div class="card" style="margin-top: 5px; margin-bottom: 5px">
+	      <div class="item item-divider">
+		<p  style="font-size: 75%; color: black; font-weight: bolder;">
+		  Exercise
+		</p>
+	      </div>
+	      <div class="item item-text-wrap">
+
+		
+		<div ng-repeat="q in readingQuizs">
+
+		  <label>
+		    <div style="font-size: 85%; color: black; line-height: 1.82857; font-weight: normal; margin-bottom: 5px;">{{$index+1}}. <span dynamic="q.question"></span></div>
+		  </label>
+
+		  <div ng-repeat="c in q.choices">
+		    <div class="list">
+		      <li class="item item-checkbox" style="padding-left:50px; padding-bottom:10px; padding-top: 10px; padding-right:10px;">
+			<label class="checkbox">
+			  <input type="radio" ng-model='q.ans' ng-value="{{$index+1}}">
+			</label>
+			<span style="font-size: 75%; font-weight: normal; padding-bottom: 5px;"> {{c}} </span> 
+		      </li>
+		    </div>
+		  </div>
+		  <br>
+		</div>
+
+		
+	      </div>
+
+	    </div>
+
+	    
+	  </div>
+	</div>
+
+
+	<div class="card">
+	  <div class="item item-divider" style="background: #F5DEB3;">
+	    Listening Section
+	  </div>
+
+	  <div ng-repeat="q in listeningQuizs">
+	    <div class="item item-text-wrap" style="padding: 5px;">
+
+	      <div class="card" style="margin-top: 5px; margin-bottom: 5px">
+		<!-- <div class="item item-divider" style="background: #F2E6D0;"> -->
+		<div class="item item-divider">
+		  <p  style="font-size: 75%; color: black; font-weight: bolder;">
+		    Watch the following video, then do the exercise below.
+		  </p>
+		</div>
+		<div class="item item-text-wrap;" style="border-width: 0px;">	     
+		  <div ng-if="is_v == true">
+		    <youtube-video video-id="q.vid" player-vars="q.opts" player-width="'100%'" player-height="'100%'"></youtube-video>
+		  </div>
+		</div>
+
+
+
+		<!-- <div style="margin-bottom: 15px;"> </div> -->
+
+		
+		<div class="item item-divider">
+		  <p  style="font-size: 75%; color: black; font-weight: bolder;">
+		    Exercise
+		  </p>
+		</div>
+
+
+		<div class="item item-text-wrap" style="border-width: 0px;">
+
+		  <div ng-repeat="eq in q.question_container">
+		    <label>
+		      <div style="font-size: 85%; color: black; line-height: 1.82857; font-weight: normal; margin-bottom: 5px;">{{$index+1}}. <span dynamic="eq.question"></span></div>
+		    </label>
+
+		    <div ng-repeat="c in eq.choices">
+		      <div class="list">
+			<li class="item item-checkbox" style="padding-left:50px; padding-bottom:10px; padding-top: 10px; padding-right:10px;">
+			  <label class="checkbox">
+			    <input type="radio" ng-model='eq.ans' ng-value="{{$index+1}}">
+			  </label>
+			  <span style="font-size: 75%; font-weight: normal; padding-bottom: 5px;"> {{c}} </span> 
+			</li>
+		      </div>
+		    </div>
+
+		    <br>
+		  </div>
+
+		</div>
+
+
+	      </div>
+
+	    </div>
+	  </div>
+	</div>
+
+	<button class="button button-block button-positive" ng-click="showResult()">
+	  {{result}}
+	</button>
+	
+	<br>
+
+	<br>
+	<br>
+
+      </div> <!-- end of is_existing -->
+
+      <div ng-if="is_existing != true">
+	<h4 style="text-align: center;">현재 퀴즈가 제작중입니다</h4>
+
+	<p style="text-align:center">
+	<img src="http://www.ayblog.com/wp-content/uploads/2013/01/I_am_NOT_American-i-am-gift-from-france-you-idiot-funny-cartoon-statue-of-liberty.jpg" alt="Mountain View" style="width:100%;height:100&; opacity:1.0;">
+	</p>
+
+	<button class="button button-block button-positive" ng-click="goTodayquiz()">
+	  돌아가기
+	</button>
+	
+      </div>
+      
+      <!-- 섹션 3개 끝나는 시점 -->
+
+    </div> <!-- end of is_done -->
+
+    <div ng-if="is_done == true">
+
+      <div class="card" style="margin-top:0px">
+	<div class="item item-divider" style="background: #F5DEB3;">
+	  다른 난이도 퀴즈 도전
+	</div>
+
+	<div class="item item-text-wrap">
+
+	  <div class="list" style="border: 2px solid #8AC007;  border-radius: 5px;">
+	    <label class="item item-input item-select">
+	      <div class="input-label">
+		난이도
+	      </div>
+	      <select ng-model="prop.value" ng-options="v for v in prop.values">
+	      </select>
+	    </label>
+
+	  </div>
+
+
+	</div>
+
+      </div>
+
+      <hr>
+
+
+      <div class="card">
+	<div class="item item-divider">
+	  Tip!
+	</div>
+
+	<div class="item item-text-wrap">
+
+	  <div class="list">
+	    <p style="text-align: center;">퀴즈 보시는중 오른쪽 상단위에 
+	      <button class="button button-icon icon ion-search" ng-click="find()"></button> </p>
+            <p style="text-align: center;">클릭하시면 영어사전을 사용하실수 있습니다.</p>
+	      
+	  </div>
+
+
+	</div>
+
+      </div>
+
+      <button class="button button-block button-positive" ng-click="goTodayquiz()">
+	돌아가기
+      </button>
+
+      <!--
+      <button class="button button-block button-positive" ng-click="goTodayquiz()">
+      오늘의 퀴즈로 돌아가기
+      </button>
+      -->
+
+    </div>
+
+    
+  </ion-content>
+  
+</ion-view>

@@ -1,0 +1,58 @@
+<ion-view view-title="로그인" style="background-color:#E8E8E8;">
+
+  <ion-modal-view class="product edit create" >
+
+    <div class="row">
+      <div class="col">
+
+	<div ng-if="user_info.is_login!=true">
+	  <h4 align="center">로그인 필수 컨텐츠</h4>
+	  
+	  <hr>
+
+	  <div style="margin-top:20px"></div>
+
+	  <div ng-if="user_info.fb.id == -1">
+	  <button class="button button-full button-positive" ng-click="login()">페이스북 로그인</button>
+	  </div>
+
+	  <div ng-if="user_info.fb.id != -1">
+	  <button class="button button-full button-calm" ng-click="logout()">페이스북 로그아웃</button>
+	  </div>
+	  
+
+	  <div style="margin-top:20px"></div>
+	  
+	  <button class="button button-full button-assertive" ng-click="close_login()"> 취소 </button>
+	  <p> 페이스북 API연동으로 인해서 최대 5초 정도 소요 됩니다. </p>
+	</div>
+
+	<!--
+	<div ng-if="user_info.is_login==true">
+
+	  <h4 align="center">facebook 로그인</h4>
+	  
+	  <hr>
+
+	  <p>고유 아이디: {{user_info.fb.id}}</p>
+	  <p>계정 이름: {{user_info.fb.name}}</p>
+	  <p>계정 이메일: {{user_info.fb.email}}</p>
+
+	  <div style="margin-top:20px"></div>
+
+	  <button class="button button-full button-balanced" ng-click="close_login()"> 돌아가기</button>
+
+	  <div style="margin-top:20px"></div>
+	  
+	  <button class="button button-full button-assertive" ng-click="logout()"> 로그아웃 </button>
+	</div>
+	-->
+
+      </div>
+
+    </div>
+
+
+  </ion-modal-view>
+  
+</ion-view>

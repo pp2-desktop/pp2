@@ -1,0 +1,145 @@
+<ion-side-menus enable-menu-with-back-views="false">
+
+  <!--
+  <ion-header-bar class="bar bar-subheader" style="margin: 0px; padding: 0px; overflow: hidden; border-bottom-style: solid;
+  border-bottom-width: 1px;
+  border-bottom-color: #ddd;">
+  <ion-scroll delegate-handle="menu" id="ionScrollRegion" direction="x">
+  <div id="content2">
+  <a class="item" ng-repeat="element in menu_container" ng-click="selectTab($index)">
+
+  {{element.data}}
+
+
+  </a>
+  </div>
+  </ion-scroll>
+  </ion-header-bar>
+  -->
+  
+  <!--
+  <div class="loading" ng-if="is_loading==true">
+    <ion-spinner icon="android" class="spinner-assertive"></ion-spinner>
+  </div>
+  -->
+
+  <ion-side-menu-content edge-drag-threshold="true"
+			 drag-content="true">
+    <ion-nav-bar class="bar-stable" align-title="center">
+
+
+      <ion-nav-back-button ng-click="myGoBack()">
+      </ion-nav-back-button>
+
+      
+      <ion-nav-buttons side="left">
+        <button class="button button-icon button-clear ion-navicon" menu-toggle="left">
+        </button>
+      </ion-nav-buttons>
+
+      <ion-nav-buttons side="right">
+	<div ng-if="menu_opt.refresh==true">
+        <button class="button button-icon icon ion-android-refresh" ng-click="refresh()">
+        </button>
+	</div>
+
+	<div ng-if="menu_opt.find==true">
+	<button class="button button-icon icon ion-search" ng-click="find()">
+        </button>
+	</div>
+
+	<!--
+	<div ng-if="status == 0">
+	<button class="button button-icon icon ion-more" ng-click="more()">
+        </button>
+	</div>
+	<div ng-if="status == 1">
+	<button class="button button-icon icon ion-search" ng-click="find()">
+        </button>
+	</div>
+	-->
+
+      </ion-nav-buttons>
+    </ion-nav-bar>
+
+
+    <ion-tabs class="tabs-stable tabs-icon-top">
+
+      <ion-tab title="홈" icon-on="ion-ios-home" icon-off="ion-ios-home-outline"  on-select="onTabSelected(0)">
+      </ion-tab>
+
+      <ion-tab title="오늘의단어" icon-on="ion-ios-bookmarks" icon-off="ion-ios-bookmarks-outline" on-select="onTabSelected(1)">
+      </ion-tab>
+
+
+      <ion-tab title="오늘의퀴즈" icon-on="ion-ios-compose" icon-off="ion-ios-compose-outline"  on-select="onTabSelected(2)">
+      </ion-tab>
+
+      <ion-tab title="도전단어왕" icon-on="ion-ios-flame" icon-off="ion-ios-flame-outline"  on-select="onTabSelected(3)">
+      </ion-tab>
+
+      <ion-tab title="게시판" icon-on="ion-ios-list" icon-off="ion-ios-list-outline" on-select="onTabSelected(4)">
+
+      </ion-tab>
+
+    </ion-tabs>
+
+
+    <ion-nav-view name="menuContent"></ion-nav-view>
+  </ion-side-menu-content>
+  
+
+  <ion-side-menu side="left">
+    <ion-header-bar class="bar-stable">
+      <h1 class="title">영어데이</h1> 
+    </ion-header-bar>
+    <ion-content>
+
+
+      <div class="list">
+
+	<div class="item item-divider">
+	  계정 설정
+	</div>
+
+	<a menu-close class="item" ng-click="open_login()">
+	  <i class="icon ion-social-facebook" style="font-size: 130%; margin-right: 10px;"></i>&nbsp&nbsp Login with Facebook
+	</a>
+	
+	<a class="item" menu-close href="#/app/user-setting">
+	  <i class="icon ion-android-person" style="font-size: 130%; margin-right: 10px;"></i>&nbsp&nbsp내 계정
+	</a>
+
+	<div class="item item-divider">
+	  영어사전
+	</div>
+
+	<a class="item" menu-close ng-click="open_dict()">
+	  <i class="icon ion-ios-search-strong" style="font-size: 130%; margin-right: 10px;"></i>&nbsp&nbsp네이버 영어사전
+	</a>
+
+
+	<div class="item item-divider">
+	  인앱 결제
+	</div>
+
+	<a class="item" menu-close href="#/app/day-store/menu">
+	  <i class="icon ion-card" style="font-size: 130%; margin-right: 10px;"></i>&nbsp&nbsp결제 하기
+	</a>
+
+	<!--
+	<a class="item" href="#">
+	  {{user_info.device.uuid}}
+	</a>
+	-->
+
+      </div>
+
+
+      
+
+
+    </ion-content>
+  </ion-side-menu>
+
+</ion-side-menus>

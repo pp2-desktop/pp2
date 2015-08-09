@@ -1,0 +1,211 @@
+{
+    "prepare_queue": {
+        "installed": [],
+        "uninstalled": []
+    },
+    "config_munge": {
+        "files": {
+            "res/xml/config.xml": {
+                "parents": {
+                    "/*": [
+                        {
+                            "xml": "<feature name=\"Keyboard\"><param name=\"android-package\" value=\"com.ionic.keyboard.IonicKeyboard\" /><param name=\"onload\" value=\"true\" /></feature>",
+                            "count": 1
+                        },
+                        {
+                            "xml": "<feature name=\"InAppBrowser\"><param name=\"android-package\" value=\"org.apache.cordova.inappbrowser.InAppBrowser\" /></feature>",
+                            "count": 1
+                        },
+                        {
+                            "xml": "<feature name=\"Device\"><param name=\"android-package\" value=\"org.apache.cordova.device.Device\" /></feature>",
+                            "count": 1
+                        },
+                        {
+                            "xml": "<feature name=\"DatePickerPlugin\"><param name=\"android-package\" value=\"com.plugin.datepicker.DatePickerPlugin\" /></feature>",
+                            "count": 1
+                        },
+                        {
+                            "xml": "<feature name=\"SpinnerDialog\"><param name=\"android-package\" value=\"hu.dpal.phonegap.plugins.SpinnerDialog\" /></feature>",
+                            "count": 1
+                        },
+                        {
+                            "xml": "<feature name=\"Notification\"><param name=\"android-package\" value=\"org.apache.cordova.dialogs.Notification\" /></feature>",
+                            "count": 1
+                        },
+                        {
+                            "xml": "<feature name=\"NetworkStatus\"><param name=\"android-package\" value=\"org.apache.cordova.networkinformation.NetworkManager\" /></feature>",
+                            "count": 1
+                        },
+                        {
+                            "xml": "<feature name=\"Toast\"><param name=\"android-package\" value=\"nl.xservices.plugins.Toast\" /></feature>",
+                            "count": 1
+                        },
+                        {
+                            "xml": "<feature name=\"SQLitePlugin\"><param name=\"android-package\" value=\"io.liteglue.SQLitePlugin\" /></feature>",
+                            "count": 1
+                        },
+                        {
+                            "xml": "<feature name=\"AppVersion\"><param name=\"android-package\" value=\"uk.co.whiteoctober.cordova.AppVersion\" /></feature>",
+                            "count": 1
+                        },
+                        {
+                            "xml": "<feature name=\"InAppBillingPlugin\"><param name=\"android-package\" value=\"com.smartmobilesoftware.inappbilling.InAppBillingPlugin\" /></feature>",
+                            "count": 1
+                        },
+                        {
+                            "xml": "<feature name=\"UniversalAnalytics\"><param name=\"android-package\" value=\"com.danielcwilson.plugins.analytics.UniversalAnalyticsPlugin\" /></feature>",
+                            "count": 1
+                        },
+                        {
+                            "xml": "<feature name=\"ActionSheet\"><param name=\"android-package\" value=\"nl.xservices.plugins.actionsheet.ActionSheet\" /></feature>",
+                            "count": 1
+                        },
+                        {
+                            "xml": "<feature name=\"GoogleAnalytics\"><param name=\"android-package\" value=\"com.cmackay.plugins.googleanalytics.GoogleAnalyticsPlugin\" /></feature>",
+                            "count": 1
+                        },
+                        {
+                            "xml": "<feature name=\"PushPlugin\"><param name=\"android-package\" value=\"com.plugin.gcm.PushPlugin\" /></feature>",
+                            "count": 1
+                        }
+                    ]
+                }
+            },
+            "AndroidManifest.xml": {
+                "parents": {
+                    "/manifest": [
+                        {
+                            "xml": "<uses-permission android:name=\"com.android.vending.BILLING\" />",
+                            "count": 1
+                        },
+                        {
+                            "xml": "<uses-permission android:name=\"android.permission.ACCESS_NETWORK_STATE\" />",
+                            "count": 1
+                        },
+                        {
+                            "xml": "<uses-permission android:name=\"android.permission.GET_ACCOUNTS\" />",
+                            "count": 1
+                        },
+                        {
+                            "xml": "<uses-permission android:name=\"android.permission.WAKE_LOCK\" />",
+                            "count": 1
+                        },
+                        {
+                            "xml": "<uses-permission android:name=\"android.permission.VIBRATE\" />",
+                            "count": 1
+                        },
+                        {
+                            "xml": "<uses-permission android:name=\"com.google.android.c2dm.permission.RECEIVE\" />",
+                            "count": 1
+                        },
+                        {
+                            "xml": "<permission android:name=\"com.pp2.eday.permission.C2D_MESSAGE\" android:protectionLevel=\"signature\" />",
+                            "count": 1
+                        },
+                        {
+                            "xml": "<uses-permission android:name=\"com.pp2.eday.permission.C2D_MESSAGE\" />",
+                            "count": 1
+                        }
+                    ],
+                    "/*": [
+                        {
+                            "xml": "<uses-permission android:name=\"android.permission.ACCESS_NETWORK_STATE\" />",
+                            "count": 3
+                        },
+                        {
+                            "xml": "<uses-permission android:name=\"android.permission.INTERNET\" />",
+                            "count": 2
+                        }
+                    ],
+                    "/manifest/application": [
+                        {
+                            "xml": "<meta-data android:name=\"com.google.android.gms.version\" android:value=\"@integer/google_play_services_version\" />",
+                            "count": 2
+                        },
+                        {
+                            "xml": "<activity android:exported=\"true\" android:name=\"com.plugin.gcm.PushHandlerActivity\" />",
+                            "count": 1
+                        },
+                        {
+                            "xml": "<receiver android:name=\"com.plugin.gcm.CordovaGCMBroadcastReceiver\" android:permission=\"com.google.android.c2dm.permission.SEND\"><intent-filter><action android:name=\"com.google.android.c2dm.intent.RECEIVE\" /><action android:name=\"com.google.android.c2dm.intent.REGISTRATION\" /><category android:name=\"com.pp2.eday\" /></intent-filter></receiver>",
+                            "count": 1
+                        },
+                        {
+                            "xml": "<service android:name=\"com.plugin.gcm.GCMIntentService\" />",
+                            "count": 1
+                        }
+                    ]
+                }
+            },
+            "res/values/billing_key_param.xml": {
+                "parents": {
+                    "/*": [
+                        {
+                            "xml": "<string name=\"billing_key_param\">MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAsnNO2fB0zC4BGDq3zJTj6e1gl18YeS+kB1pIzOmkM71byXeFGnlF324ZtfxEV/ENauGIADdtPOzsNIvwv00Qkf5HQTrtIyZ0aJDtPX/n1rO/bXiC5FPzv7b7VUKJOucqMmZg30t43J9nDhV+xJrBlcUPSiXZjt4BGrfdoZcxEYlWwCHIX04+t5TkIgqFR03pR4fAflGK2p6vGG5fDLXZkWG8FAEsxyVNdOSbTWbEYHuJA2WnWO0FzRefivpZGvd9cwudmpuBixMRYxOkV+IlFIoDBwYoU72XjWtMsnYiof7S2NGUGhrCYWm9bukFa/YCyS+bcDK0IBEp8199q4KQsQIDAQAB</string>",
+                            "count": 1
+                        }
+                    ]
+                }
+            }
+        }
+    },
+    "installed_plugins": {
+        "com.ionic.keyboard": {
+            "PACKAGE_NAME": "com.ionicframework.pp2543331"
+        },
+        "cordova-plugin-inappbrowser": {
+            "PACKAGE_NAME": "com.ionicframework.pp2543331"
+        },
+        "org.apache.cordova.console": {
+            "PACKAGE_NAME": "com.ionicframework.pp2543331"
+        },
+        "org.apache.cordova.device": {
+            "PACKAGE_NAME": "com.ionicframework.pp2543331"
+        },
+        "com.plugin.datepicker": {
+            "PACKAGE_NAME": "com.ionicframework.pp2543331"
+        },
+        "hu.dpal.phonegap.plugins.SpinnerDialog": {
+            "PACKAGE_NAME": "com.ionicframework.pp2543331"
+        },
+        "org.apache.cordova.dialogs": {
+            "PACKAGE_NAME": "com.ionicframework.pp2543331"
+        },
+        "cordova-plugin-network-information": {
+            "PACKAGE_NAME": "com.ionicframework.pp2543331"
+        },
+        "nl.x-services.plugins.toast": {
+            "PACKAGE_NAME": "com.ionicframework.pp2543331"
+        },
+        "io.litehelpers.cordova.sqlite": {
+            "PACKAGE_NAME": "com.pp2.enday"
+        },
+        "uk.co.whiteoctober.cordova.appversion": {
+            "PACKAGE_NAME": "com.pp2.enday"
+        },
+        "com.smartmobilesoftware.androidinappbilling": {
+            "BILLING_KEY": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAsnNO2fB0zC4BGDq3zJTj6e1gl18YeS+kB1pIzOmkM71byXeFGnlF324ZtfxEV/ENauGIADdtPOzsNIvwv00Qkf5HQTrtIyZ0aJDtPX/n1rO/bXiC5FPzv7b7VUKJOucqMmZg30t43J9nDhV+xJrBlcUPSiXZjt4BGrfdoZcxEYlWwCHIX04+t5TkIgqFR03pR4fAflGK2p6vGG5fDLXZkWG8FAEsxyVNdOSbTWbEYHuJA2WnWO0FzRefivpZGvd9cwudmpuBixMRYxOkV+IlFIoDBwYoU72XjWtMsnYiof7S2NGUGhrCYWm9bukFa/YCyS+bcDK0IBEp8199q4KQsQIDAQAB",
+            "PACKAGE_NAME": "com.pp2.test"
+        },
+        "cordova-plugin-google-analytics": {
+            "PACKAGE_NAME": "com.pp2.eday"
+        },
+        "com.jcesarmobile.IDFVPlugin": {
+            "PACKAGE_NAME": "com.pp2.eday"
+        },
+        "nl.x-services.plugins.actionsheet": {
+            "PACKAGE_NAME": "com.pp2.eday"
+        },
+        "com.cmackay.plugins.googleanalytics": {
+            "PACKAGE_NAME": "com.pp2.eday"
+        },
+        "com.phonegap.plugins.PushPlugin": {
+            "PACKAGE_NAME": "com.pp2.eday"
+        }
+    },
+    "dependent_plugins": {
+        "com.google.playservices": {
+            "PACKAGE_NAME": "com.pp2.eday"
+        }
+    }
+}

@@ -41,11 +41,11 @@ angular.module('starter.controllers', [])
       // device 정보 요청하기
 
       if($rootScope.user_info.device.uuid == -1 || $rootScope.user_info.device.uuid == undefined) {
-	alert('디바이스 uuid 없음');
+	$cordovaToast.showShortCenter('디바이스 uuid 없음');
 	return; 
       }
 
-      $cordovaToast.showShortCenter('계정정보 갱신중');
+      //$cordovaToast.showShortCenter('계정정보 갱신중');
       
       //$rootScope.user_info.device.uuid = $cordovaDevice.getUUID();
       
@@ -56,7 +56,7 @@ angular.module('starter.controllers', [])
 	  
 	  if(!rtn.result) {
 	    // error 번호 정의하기
-	    $cordovaToast.showShortCenter('네트워크 상태 디바이스 정보 가져오기 실패');
+	    //$cordovaToast.showShortCenter('네트워크 상태 디바이스 정보 가져오기 실패');
 	    return;
 	  } else {
 	    $rootScope.user_info.device.is_free_trial_done = rtn.user_info.is_free_trial_done;
@@ -64,7 +64,7 @@ angular.module('starter.controllers', [])
 	    $rootScope.user_info.device.quiz_date = rtn.user_info.quiz_date;
 	    $rootScope.user_info.device.word_on = rtn.user_info.word_on;
 	    $rootScope.user_info.device.quiz_on = rtn.user_info.quiz_on;
-	    $cordovaToast.showShortCenter('디바이스 계정 업데이트 완료');
+	    //$cordovaToast.showShortCenter('디바이스 계정 업데이트 완료');
 	  }
 	  
 	}).
@@ -88,7 +88,7 @@ angular.module('starter.controllers', [])
 	      
 	      if($rootScope.network.is_online) {
 		$rootScope.remove($rootScope.user_info.fb.id);
-		$cordovaToast.showShortCenter('디바이스에서 fb계정 정보 삭제');
+		//$cordovaToast.showShortCenter('디바이스에서 fb계정 정보 삭제');
 	      }
 	      return;
 	    } else {
@@ -101,7 +101,7 @@ angular.module('starter.controllers', [])
 	      $rootScope.user_info.fb.name = rtn.user_fb_info.name;
 	      $rootScope.user_info.fb.gender = rtn.user_fb_info.gender;
 
-	      $cordovaToast.showShortCenter('Facebook계정 업데이트 완료');
+	      //$cordovaToast.showShortCenter('Facebook계정 업데이트 완료');
 	    }
 	    
 	  }).
@@ -138,7 +138,7 @@ angular.module('starter.controllers', [])
 	   */
         } else {
 	  $rootScope.get_user_info();
-	  $cordovaToast.showShortCenter('[debug] Facebook로그아웃 상태');
+	  //$cordovaToast.showShortCenter('[debug] Facebook로그아웃 상태');
           //alert("No results found");
         }
       }, function (err) {
@@ -150,9 +150,9 @@ angular.module('starter.controllers', [])
     $rootScope.remove = function(id) {
       var query = "DELETE FROM user_fb_info where id= ?;";
       $cordovaSQLite.execute($rootScope.db, query, [id]).then(function(res) {
-	$cordovaToast.showShortCenter('[debug] db에서 Facebook계정 삭제 성공');
+	//$cordovaToast.showShortCenter('[debug] db에서 Facebook계정 삭제 성공');
       }, function (err) {
-	$cordovaToast.showShortCenter('[debug] db에서 Facebook계정 삭제 실패');
+	//$cordovaToast.showShortCenter('[debug] db에서 Facebook계정 삭제 실패');
 	alert(err);
       });
     };
@@ -298,10 +298,10 @@ angular.module('starter.controllers', [])
 	$state.go('app.day-task');
 	//$rootScope.$broadcast('refreshHome2');
       } else if(index == 3) {
-	$rootScope.menu_opt.prev_refresh = true;
-	$rootScope.menu_opt.prev_find = true;
-	$rootScope.menu_opt.refresh = true;
-	$rootScope.menu_opt.find = true;
+	$rootScope.menu_opt.prev_refresh = false;
+	$rootScope.menu_opt.prev_find = false;
+	$rootScope.menu_opt.refresh = false;
+	$rootScope.menu_opt.find = false;
 	$rootScope.place = 'app.try-quiz';
 	$state.go('app.try-quiz');
       } else if(index == 4) {

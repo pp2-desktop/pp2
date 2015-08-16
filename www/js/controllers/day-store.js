@@ -77,7 +77,7 @@ angular.module('starter.controllers')
 	    
 	  } else {
 
-	    $cordovaDialogs.alert('메뉴 -> 내 계정 -> 유료컨텐츠 남은기간에서 종료일 확인 가능.', '결제성공', '확인')
+	    $cordovaDialogs.alert('메뉴 -> 내 계정 -> 유료컨텐츠 남은기간에서 종료일 확인 가능', '결제성공', '확인')
 	      .then(function() {
 		$rootScope.get_user_info();
 		$scope.home();

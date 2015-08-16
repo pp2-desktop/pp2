@@ -179,7 +179,7 @@ angular.module('starter.controllers')
 	  // 계정정보 다시 얻기
 	  $rootScope.get_user_info();
 
-	  $cordovaToast.showShortCenter('모든 컨텐츠 3일간 무료로 제공됩니다');	  
+	  $cordovaToast.showShortCenter('모든 컨텐츠 2일간 무료로 제공됩니다');	  
 	}).
 	error(function(data, status, headers, config) {
 	  //alert('[error] 네트워크 장애 다시시도해주세요');

@@ -23,6 +23,8 @@ angular.module('starter', ['ionic', 'ngCordova', 'starter.controllers', 'angular
       $rootScope.user_info.device.uuid = $cordovaDevice.getUUID();
 
 
+      // google youtube api 인증
+    
       
       var androidConfig = {
 	"senderID": '251697108376'

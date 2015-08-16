@@ -48,7 +48,7 @@ angular.module('starter.controllers')
 
 
     $scope.$on('youtube.player.ready', function ($event, player) {
-      playerId[player.v] = {end:false, start: player.B.currentTime};
+      playerId[player.v] = {end:false, start: player.B.currentTime, is_playing: false};
       $scope.player_container.push(player);
     });
 
@@ -68,7 +68,20 @@ angular.module('starter.controllers')
       if( playerId[player.v].end == true ) {
 	playerId[player.v].end = false;
 	player.seekTo(playerId[player.v].start);
-      }     
+      }
+
+      for( var i=0; i<$scope.player_container.length; i++ ) {
+	var _v = $scope.player_container[i];
+	
+	if( $scope.player_container[i] != player ) {
+	  if(playerId[_v.v].is_playing) {
+	    $scope.player_container[i].pauseVideo();
+	  }
+	} else {
+	  playerId[_v.v].is_playing = true;
+	}
+      }
+
     });
     
     

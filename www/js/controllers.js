@@ -12,6 +12,7 @@ angular.module('starter.controllers', [])
 
     // db 에서 정보가져와서 채워주기
     // uid 는 sqlite같은곳에 저장
+    $rootScope.place = 'app.home';
 
     $rootScope.user_info = {
       device: { app_version: -1, uuid: -1, word_on: false, word_on: false, quiz_on: false,  word_date: -1, quiz_date: -1, is_free_trial_done: true},
@@ -278,6 +279,7 @@ angular.module('starter.controllers', [])
 	$rootScope.menu_opt.prev_find = true;
 	$rootScope.menu_opt.refresh = true;
 	$rootScope.menu_opt.find = true;
+	$rootScope.place = 'app.home';
 	$state.go('app.home');
       } else if(index == 1) {
 	//$rootScope.status = STATUS.TASK;
@@ -285,12 +287,14 @@ angular.module('starter.controllers', [])
 	$rootScope.menu_opt.prev_find = false;
 	$rootScope.menu_opt.refresh = true;
 	$rootScope.menu_opt.find = false;
+	$rootScope.place = 'app.day-word';
 	$state.go('app.day-word');
       } else if(index == 2) {
 	$rootScope.menu_opt.prev_refresh = false;
 	$rootScope.menu_opt.prev_find = false;
 	$rootScope.menu_opt.refresh = false;
 	$rootScope.menu_opt.find = false;
+	$rootScope.place = 'app.day-task';
 	$state.go('app.day-task');
 	//$rootScope.$broadcast('refreshHome2');
       } else if(index == 3) {
@@ -298,12 +302,14 @@ angular.module('starter.controllers', [])
 	$rootScope.menu_opt.prev_find = true;
 	$rootScope.menu_opt.refresh = true;
 	$rootScope.menu_opt.find = true;
+	$rootScope.place = 'app.try-quiz';
 	$state.go('app.try-quiz');
       } else if(index == 4) {
 	$rootScope.menu_opt.prev_refresh = true;
 	$rootScope.menu_opt.prev_find = true;
 	$rootScope.menu_opt.refresh = true;
 	$rootScope.menu_opt.find = true;
+	$rootScope.place = 'app.board';
 	$state.go('app.board');
       }
     };

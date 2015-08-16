@@ -63,11 +63,14 @@ angular.module('starter.controllers')
       $ionicHistory.nextViewOptions({
 	disableBack: true
       });
+      $state.go($rootScope.place);
+      /*
       $rootScope.menu_opt.prev_refresh = true;
       $rootScope.menu_opt.prev_find = true;
       $rootScope.menu_opt.refresh = true;
       $rootScope.menu_opt.find = true;
       $state.go('app.home');
+      */
     };
 
     $scope.$on('update', function() {

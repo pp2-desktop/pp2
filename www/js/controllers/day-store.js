@@ -15,16 +15,16 @@ angular.module('starter.controllers')
       
       if(index == 0) {
 	itemType = "word";
-	$cordovaToast.showShortCenter('오늘의 단어 선택');
+	//$cordovaToast.showShortCenter('오늘의 단어 선택');
       } else if (index == 1) {
 	itemType = "quiz";
-	$cordovaToast.showShortCenter('오늘의 퀴즈 선택');
+	//$cordovaToast.showShortCenter('오늘의 퀴즈 선택');
       } else if (index == 2) {
 	itemType = "word.quiz";
-	$cordovaToast.showShortCenter('영어데이 콤보 선택');
+	//$cordovaToast.showShortCenter('영어데이 콤보 선택');
       } else if (index == 3) {
 	itemType = "word.quiz.ayear";
-	$cordovaToast.showShortCenter('1년 자유 이용권 선택');
+	//$cordovaToast.showShortCenter('1년 자유 이용권 선택');
       } else {
 	alert("[error] 아이템을 찾을수 없습니다");
 	return;

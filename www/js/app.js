@@ -13,7 +13,7 @@ angular.module('starter', ['ionic', 'ngCordova', 'starter.controllers', 'angular
       if (window.cordova && window.cordova.plugins.Keyboard) {
 	cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
       }
-
+      // 상태바
       StatusBar.overlaysWebView(true);
       StatusBar.styleDefault();
       /*

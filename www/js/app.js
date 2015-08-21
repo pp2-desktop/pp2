@@ -13,6 +13,9 @@ angular.module('starter', ['ionic', 'ngCordova', 'starter.controllers', 'angular
       if (window.cordova && window.cordova.plugins.Keyboard) {
 	cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
       }
+
+      StatusBar.overlaysWebView(true);
+      StatusBar.styleDefault();
       /*
       if (window.StatusBar) {
 	// org.apache.cordova.statusbar required
@@ -126,9 +129,20 @@ angular.module('starter', ['ionic', 'ngCordova', 'starter.controllers', 'angular
 	    
           },
           restore:  function(transactionId, productId, transactionReceipt) {
-            if(productId === 'productId1') {
-              console.log("Restored product id 1 purchase");
-            }
+	    alert('복구 콜백');
+            if(productId === 'wordEday') {
+	      
+              alert(' 복원 단어');
+            } else if(productId == 'quizEday') {
+	      
+              alert('복원 퀴즈');
+	    } else if(productId == 'wordquizEday') {
+	      
+              alert('복원 영어데이 콤보');
+	    } else if(productId == 'oneyearEday') {
+	      
+              alert('복원 1년');
+	    }
           },
           error:    function(errorCode, errorMessage) {
             console.log("ERROR: " + errorMessage);

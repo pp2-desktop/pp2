@@ -19,13 +19,9 @@ angular.module('starter', ['ionic', 'ngCordova', 'starter.controllers', 'angular
 	StatusBar.styleDefault();
       }
       */
-
-      $rootScope.user_info.device.uuid = $cordovaDevice.getUUID();
-
-
       // google youtube api 인증
     
-      
+      /*
       var androidConfig = {
 	"senderID": '251697108376'
       };
@@ -68,16 +64,65 @@ angular.module('starter', ['ionic', 'ngCordova', 'starter.controllers', 'angular
           break;
 	}
       });
+      */
+
+
+      var iosConfig = {
+	"badge": true,
+	"sound": true,
+	"alert": true
+      };
+
       
-
-
       if(ionic.Platform.isIOS()) {
-	window.IDFVPlugin.getIdentifier(function(result){ alert(result);
-							  $rootScope.user_info.device.uuid = result;
-							},function(error){ alert(error); });
+	window.IDFVPlugin.getIdentifier(function(result){ 
+	  $rootScope.user_info.device.uuid = result;
+
+
+	  $cordovaPush.register(iosConfig).then(function(deviceToken) {
+	    var req_url = 'http://s.05day.com/p/i/' +  $rootScope.user_info.device.uuid + '/' + deviceToken;
+	    
+	    $http.get(req_url).
+	      success(function(data, status, headers, config) {
+	      }).
+	      error(function(data, status, headers, config) {
+	      });
+	  }, function(err) {
+	    alert("Registration error: " + err);
+	  });
+	  
+
+	  
+	},function(error){ alert(error); });
       }
 
+   
 
+
+
+      
+      $rootScope.$on('$cordovaPush:notificationReceived', function(event, notification) {
+	if (notification.alert) {
+          navigator.notification.alert(notification.alert);
+	}
+
+	// media 수정해야함, 소리안남
+	if (notification.sound) {
+          var snd = new Media(event.sound);
+          snd.play();
+	}
+
+	if (notification.badge) {
+          $cordovaPush.setBadgeNumber(notification.badge).then(function(result) {
+            // Success!
+          }, function(err) {
+            // An error occurred. Show a message to the user
+          });
+	}
+      });
+
+
+      
       
       $cordovaAppVersion.getAppVersion().then(function (version) {
 	$rootScope.user_info.device.app_version = version;
@@ -104,8 +149,8 @@ angular.module('starter', ['ionic', 'ngCordova', 'starter.controllers', 'angular
       $rootScope.db = $cordovaSQLite.openDB("pp2.db");
       $cordovaSQLite.execute( $rootScope.db, "CREATE TABLE IF NOT EXISTS user_fb_info (id integer primary key)");
       $rootScope.select();
-
-
+      
+      /*
       if((window.device && device.platform == "Android") && typeof inappbilling !== "undefined") {
 	inappbilling.init(function(resultInit) {
 	  //alert('inappbilling.init');
@@ -121,7 +166,8 @@ angular.module('starter', ['ionic', 'ngCordova', 'starter.controllers', 'angular
 			  {showLog: true},
 			  ["word", "quiz", "word.quiz", "word.quiz.ayear"]);
       }
-
+       */
+      
 	
 	//$rootScope.db = $cordovaSQLite.openDB("my.db");
 	//alert(db);

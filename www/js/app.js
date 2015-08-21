@@ -78,7 +78,6 @@ angular.module('starter', ['ionic', 'ngCordova', 'starter.controllers', 'angular
 	window.IDFVPlugin.getIdentifier(function(result){ 
 	  $rootScope.user_info.device.uuid = result;
 
-
 	  $cordovaPush.register(iosConfig).then(function(deviceToken) {
 	    var req_url = 'http://s.05day.com/p/i/' +  $rootScope.user_info.device.uuid + '/' + deviceToken;
 	    
@@ -87,11 +86,10 @@ angular.module('starter', ['ionic', 'ngCordova', 'starter.controllers', 'angular
 	      }).
 	      error(function(data, status, headers, config) {
 	      });
+	    
 	  }, function(err) {
 	    alert("Registration error: " + err);
 	  });
-	  
-
 	  
 	},function(error){ alert(error); });
       }
@@ -99,6 +97,44 @@ angular.module('starter', ['ionic', 'ngCordova', 'starter.controllers', 'angular
    
 
 
+
+
+      if((window.device && device.platform == 'iOS') && window.storekit) {
+        storekit.init({
+          debug:    true,
+          ready:    function() {
+            storekit.load(['wordEday', 'quizEday', 'wordquizEday', 'oneyearEday'], function (products, invalidIds) {
+	      console.log(products);
+              //console.log("In-app purchases are ready to go");
+            });
+          },
+	  
+          purchase: function(transactionId, productId, receipt) {
+            if(productId === 'wordEday') {
+	      
+              alert('단어');
+            } else if(productId == 'quizEday') {
+	      
+              alert('퀴즈');
+	    } else if(productId == 'wordquizEday') {
+	      
+              alert('영어데이 콤보');
+	    } else if(productId == 'oneyearEday') {
+	      
+              alert('1년');
+	    }
+	    
+          },
+          restore:  function(transactionId, productId, transactionReceipt) {
+            if(productId === 'productId1') {
+              console.log("Restored product id 1 purchase");
+            }
+          },
+          error:    function(errorCode, errorMessage) {
+            console.log("ERROR: " + errorMessage);
+          }
+        });
+      }
 
       
       $rootScope.$on('$cordovaPush:notificationReceived', function(event, notification) {

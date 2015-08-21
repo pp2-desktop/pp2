@@ -11,25 +11,30 @@ angular.module('starter.controllers')
 
     $scope.buy_item = function(index) {
 
-      var itemType = "word";
+      var itemType = "wordEday";
       
       if(index == 0) {
-	itemType = "word";
+	itemType = "wordEday";
 	//$cordovaToast.showShortCenter('오늘의 단어 선택');
       } else if (index == 1) {
-	itemType = "quiz";
+	itemType = "quizEday";
 	//$cordovaToast.showShortCenter('오늘의 퀴즈 선택');
       } else if (index == 2) {
-	itemType = "word.quiz";
+	itemType = "wordquizEday";
 	//$cordovaToast.showShortCenter('영어데이 콤보 선택');
       } else if (index == 3) {
-	itemType = "word.quiz.ayear";
+	itemType = "oneyearEday";
 	//$cordovaToast.showShortCenter('1년 자유 이용권 선택');
       } else {
 	alert("[error] 아이템을 찾을수 없습니다");
 	return;
       }
 
+      if((window.device && device.platform == 'iOS') && window.storekit) {
+        storekit.purchase(itemType);
+      }
+
+      /*
       if((window.device && device.platform == "Android") && typeof inappbilling !== "undefined") {
 	inappbilling.consumePurchase(function(data) {
 	  $scope.purchase(itemType);
@@ -37,10 +42,11 @@ angular.module('starter.controllers')
 	  $scope.purchase(itemType);
 	}, itemType);
       };
+      */
 
     };
 
-
+/*
     $scope.purchase = function(itemType) {
 
       if((window.device && device.platform == "Android") && typeof inappbilling !== "undefined") {
@@ -55,7 +61,7 @@ angular.module('starter.controllers')
       }
 
     };
-
+*/
 
     $scope.buy = function(item) {
       var req_url = 'http://s.05day.com/u/buy/' + $rootScope.user_info.device.uuid + '/' + item;

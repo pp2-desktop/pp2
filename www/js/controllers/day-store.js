@@ -9,6 +9,74 @@ angular.module('starter.controllers')
     $rootScope.menu_opt.refresh = false;
     $rootScope.menu_opt.find = false;
 
+
+    $scope.is_word_disable_purchase = false;
+    $scope.is_quiz_disable_purchase = false;
+    $scope.is_wordquiz_disable_purchase = false;
+    $scope.is_wordquiz_ayear_disable_purchase = false;
+    
+    /*
+    var active_purchase = function(type) {
+      if(type == 0) {
+
+	$scope.is_word_disable_purchase = false;
+      } else if(type == 1) {
+
+	$scope.is_quiz_disable_purchase = false;
+      } else if(type == 2) {
+
+	$scope.is_wordqquiz_disable_purchase = false;
+      } else if(type == 3) {
+
+	$scope.is_wordquiz_ayear_purchase = false;
+      } else {
+	alert("[error] active 아이템 번호를 찾을수 없습니다");
+      }
+    };
+    */
+
+    
+    $scope.disable_purchase = function(type) {
+      
+      if (type == 0) {
+	$scope.is_word_disable_purchase = true;
+      } else if (type == 1) {
+	
+	$scope.is_quiz_disable_purchase = true;
+      } else if (type == 2) {
+	
+	$scope.is_wordquiz_disable_purchase = true;
+      } else if (type == 3) {
+	
+	$scope.is_wordquiz_ayear_disable_purchase = true;
+      } else {
+	
+	alert("[error] 아이템 번호를 찾을수 없습니다");
+      }
+
+      //var selftype = type;
+      //alert(type);
+      
+      $timeout( function() {
+	if(type == 0) {
+	  $scope.is_word_disable_purchase = false;
+	} else if(type == 1) {
+
+	  $scope.is_quiz_disable_purchase = false;
+	} else if(type == 2) {
+
+	  $scope.is_wordquiz_disable_purchase = false;
+	} else if(type == 3) {
+
+	  $scope.is_wordquiz_ayear_disable_purchase = false;
+	} else {
+	  alert("[error] active 아이템 번호를 찾을수 없습니다");
+	}
+      }, 4000);
+      
+    };
+
+
     $scope.buy_item = function(index) {
 
       var itemType = "wordEday";
@@ -30,6 +98,8 @@ angular.module('starter.controllers')
 	return;
       }
 
+      $scope.disable_purchase(index);
+
       if((window.device && device.platform == 'iOS') && window.storekit) {
         storekit.purchase(itemType);
       }
@@ -43,10 +113,15 @@ angular.module('starter.controllers')
 	}, itemType);
       };
       */
-
     };
 
-/*
+    $rootScope.purchased = function(itemType) {
+      //alert(itemType);
+      $scope.buy(itemType);
+    };
+
+
+    /*
     $scope.purchase = function(itemType) {
 
       if((window.device && device.platform == "Android") && typeof inappbilling !== "undefined") {
@@ -61,7 +136,7 @@ angular.module('starter.controllers')
       }
 
     };
-*/
+    */
 
     $scope.buy = function(item) {
       var req_url = 'http://s.05day.com/u/buy/' + $rootScope.user_info.device.uuid + '/' + item;
@@ -75,7 +150,6 @@ angular.module('starter.controllers')
 	  var rtn = data;
 	  
 	  if(!rtn.result) {
-
 	    $cordovaDialogs.alert('서버 문제로 구매에 실패하였습니다. support@05day.com 문의해주세요.', '오류', '확인')
 	      .then(function() {
 		

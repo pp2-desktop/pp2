@@ -178,7 +178,7 @@ angular.module('starter.controllers')
       promise = $interval(function() {
 	if(cplayer &&  cplayer_index != -1) {
 	  var rtn = secondsToTime(cplayer.getCurrentTime().toFixed(0));
-	  console.log(rtn);
+	  //console.log(rtn);
 	  $scope.dayword_container[cplayer_index].time = rtn;
 
 

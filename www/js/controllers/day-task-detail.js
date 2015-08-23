@@ -355,7 +355,7 @@ angular.module('starter.controllers')
 
 	for(i=0; i< $scope.listeningQuizs.length; i++) {
 	  var each_quiz = $scope.listeningQuizs[i];
-	  console.log(each_quiz);
+	  //console.log(each_quiz);
 	  for(var t=0; t<each_quiz.question_container.length; t++) {
 
 	    if(each_quiz.question_container[t].correct_ans == each_quiz.question_container[t].ans) {

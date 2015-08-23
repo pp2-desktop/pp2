@@ -103,6 +103,7 @@ angular.module('starter', ['ionic', 'ngCordova', 'starter.controllers', 'angular
 
 
       if((window.device && device.platform == 'iOS') && window.storekit) {
+	
         storekit.init({
           debug:    true,
           ready:    function() {
@@ -114,17 +115,17 @@ angular.module('starter', ['ionic', 'ngCordova', 'starter.controllers', 'angular
 	  
           purchase: function(transactionId, productId, receipt) {
             if(productId === 'wordEday') {
-	      
-              alert('단어');
+	      $rootScope.purchased('word');
+              //alert('단어');
             } else if(productId == 'quizEday') {
-	      
-              alert('퀴즈');
+	      $rootScope.purchased('quiz');      
+              //alert('퀴즈');
 	    } else if(productId == 'wordquizEday') {
-	      
-              alert('영어데이 콤보');
+	      $rootScope.purchased('word.quiz');	      	      
+              //alert('영어데이 콤보');
 	    } else if(productId == 'oneyearEday') {
-	      
-              alert('1년');
+	      $rootScope.purchased('word.quiz.ayear');
+              //alert('1년');
 	    }
 	    
           },

@@ -290,9 +290,9 @@ angular.module('starter.controllers', [])
 	$rootScope.place = 'app.day-word';
 	$state.go('app.day-word');
       } else if(index == 2) {
-	$rootScope.menu_opt.prev_refresh = false;
+	$rootScope.menu_opt.prev_refresh = true;
 	$rootScope.menu_opt.prev_find = false;
-	$rootScope.menu_opt.refresh = false;
+	$rootScope.menu_opt.refresh = true;
 	$rootScope.menu_opt.find = false;
 	$rootScope.place = 'app.day-task';
 	$state.go('app.day-task');

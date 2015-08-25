@@ -1,6 +1,10 @@
 angular.module('starter.controllers')
   .controller('daytaskCtrl', ['$scope', '$rootScope', '$http', '$ionicScrollDelegate', 'filterFilter', '$filter', '$window', '$cordovaDialogs', 'quizService', '$cordovaToast', '$cordovaSpinnerDialog', function($scope, $rootScope, $http, $ionicScrollDelegate, filterFilter, $filter, $window, $cordovaDialogs, quizService, $cordovaToast, $cordovaSpinnerDialog){
 
+    $scope.$on('refresh', function() {
+      init();
+    });
+
     var SAT = 6;
     var SUN = 0;
 
@@ -68,8 +72,11 @@ angular.module('starter.controllers')
       if(t.getDay() == SAT || t.getDay() == SUN) {
 	$scope.is_weekend = true;
       }
+      $scope.calendar.pickdate = $filter("date")(Date.now(), 'yyyy-MM-dd');
+      $scope.today = $scope.calendar.pickdate;
     };
     init();
+    
 
     $scope.$watch("calendar.pickdate", function(newValue, oldValue) {
       if(newValue == $scope.today) {

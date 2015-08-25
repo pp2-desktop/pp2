@@ -405,9 +405,9 @@ angular.module('starter.controllers')
     */
     
     $scope.goTodayquiz = function() {
-      $rootScope.menu_opt.prev_refresh = false;
+      $rootScope.menu_opt.prev_refresh = true;
       $rootScope.menu_opt.prev_find = false;
-      $rootScope.menu_opt.refresh = false;
+      $rootScope.menu_opt.refresh = true;
       $rootScope.menu_opt.find = false;
       $ionicHistory.goBack();
       //$state.go('app.day-task');

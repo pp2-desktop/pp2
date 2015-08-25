@@ -74,6 +74,9 @@ angular.module('starter.controllers')
       }
       $scope.calendar.pickdate = $filter("date")(Date.now(), 'yyyy-MM-dd');
       $scope.today = $scope.calendar.pickdate;
+      var date = new Date();
+      $scope.month = date.getMonth() + 1;
+      $scope.date = date.getDate();
     };
     init();
     

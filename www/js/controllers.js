@@ -342,8 +342,8 @@ angular.module('starter.controllers', [])
       var status  = $state.current.name;
 
       if (status == 'app.day-task-detail') {
-	$rootScope.menu_opt.refresh = false;
-	$rootScope.menu_opt.prev_refrsh = false;
+	$rootScope.menu_opt.refresh = true;
+	$rootScope.menu_opt.prev_refrsh = true;
 	$rootScope.menu_opt.find = false;
 	$rootScope.menu_opt.prev_find = false;
       } else if (status == 'app.day-task-result') {

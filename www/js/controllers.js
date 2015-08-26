@@ -159,6 +159,9 @@ angular.module('starter.controllers', [])
 
 
     $ionicPlatform.ready(function(){
+      $ionicPlatform.onHardwareBackButton( function() {
+	$rootScope.$broadcast('backbtn');
+      });
       //$rootScope.get_user_info();
       // 못가져오는 경우가 가끔 있음 분석해야함
       //$timeout( function(){ $rootScope.get_user_info(); }, 4000);

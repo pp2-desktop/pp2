@@ -204,6 +204,13 @@ angular.module('starter.controllers')
       $scope.stop();
     });
 
+    $scope.$on('backbtn', function() {
+      $rootScope.menu_opt.prev_refresh = true;
+      $rootScope.menu_opt.prev_find = false;
+      $rootScope.menu_opt.refresh = true;
+      $rootScope.menu_opt.find = false;
+    });
+
     /*
     stop = $interval(function() {
       if(cplayer &&  cplayer_index != -1) {

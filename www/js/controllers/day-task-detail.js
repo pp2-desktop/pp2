@@ -29,6 +29,12 @@ angular.module('starter.controllers')
     $scope.is_existing = false;
 
 
+    $scope.$on('backbtn', function() {
+      $rootScope.menu_opt.prev_refresh = true;
+      $rootScope.menu_opt.prev_find = false;
+      $rootScope.menu_opt.refresh = true;
+      $rootScope.menu_opt.find = false;
+    });
     //$scope.playerVars = {};
 
     $rootScope.menu_opt.prev_refresh = $rootScope.menu_opt.refresh;
